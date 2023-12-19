@@ -14,7 +14,7 @@
             </c:forEach>
         </ul>
 
-        <p><a href="<c:url value='/new' />">タスクの追加</a>
+        <p><a href="<c:url value='/new' />">タスクの作成</a>
 
     </c:param>
 </c:import>
