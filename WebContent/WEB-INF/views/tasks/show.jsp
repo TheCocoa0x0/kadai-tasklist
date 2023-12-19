@@ -4,11 +4,11 @@
 <c:import url="../layout/app.jsp">
     <c:param name="content">
 
-        <h2>id : ${task.id}のタスク内容ページ</h2>
+        <h2>id : ${task.id}のタスク内容</h2>
 
         <p>タスク : <c:out value="${task.content}" /></p>
-        <p>作成日時 : <c:out value="${task.created_at}" pattern="yyyy-MM-dd HH:mm:ss" /></p>
-        <p>変更日時 : <c:out value="${task.updated_at}" pattern="yyyy-MM-dd HH:mm:ss" /></p>
+        <p>作成日時 ： <fmt:formatDate value="${task.created_at}" pattern="yyyy-MM-dd HH:mm:ss" /></p>
+        <p>更新日時 ： <fmt:formatDate value="${task.updated_at}" pattern="yyyy-MM-dd HH:mm:ss" /></p>
 
         <p><a href="<c:url value='/new' />">一覧に戻る</a></p>
     </c:param>
