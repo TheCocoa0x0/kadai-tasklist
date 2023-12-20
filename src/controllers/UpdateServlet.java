@@ -14,16 +14,16 @@ import models.Task;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class CreateServlet
+ * Servlet implementation class UpdateServlet
  */
-@WebServlet("/create")
-public class CreateServlet extends HttpServlet {
+@WebServlet("/update")
+public class UpdateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreateServlet() {
+    public UpdateServlet() {
         super();
 
     }
@@ -33,26 +33,25 @@ public class CreateServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String _token = request.getParameter("_token");
-        if(_token != null && _token.equals(request.getSession().getId())) {
+        if(_token != null && _token.equals(request.getSession().getId()));
             EntityManager em = DBUtil.createEntityManager();
-            em.getTransaction().begin();
 
-            Task t = new Task();
+            Task t = em.find(Task.class, (Integer)(request.getSession().getAttribute("task.id")));
 
-            String content =  request.getParameter("content");
+            String content = request.getParameter("content");
             t.setContent(content);
 
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-            t.setCreated_at(currentTime);
             t.setUpdated_at(currentTime);
 
-            em.persist(t);
+            em.getTransaction().begin();
             em.getTransaction().commit();
             em.close();
 
-            //index1ページにリダイレクト
+            request.getSession().removeAttribute("task.id");
+
+            //indexページにリダイレクト
             response.sendRedirect(request.getContextPath() + "/index");
-        }
     }
 
 }
