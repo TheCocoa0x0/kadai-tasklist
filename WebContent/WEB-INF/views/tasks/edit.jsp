@@ -4,12 +4,12 @@
     <c:param name="content">
         <h2>id : ${task.id}のタスク編集</h2>
 
-        <form method="POST" action="<c:url value='/update' />">
+        <form method="POST" action="${pageContext.request.contextPath}/update">
             <c:import url="_form.jsp" />
         </form>
-        <p><a href="<c:url value='/index' />">一覧に戻る</a></p>
+        <p><a href="${pageContext.request.contextPath}/index">一覧に戻る</a></p>
         <p><a href="#" onclick="confirmDestory();">このタスクを削除する</a></p>
-        <form method="POST" action="<c:url value='/destory' />">
+        <form method="POST" action="${pageContext.request.contextPath}/destroy">
             <input type="hidden" name="_token" value="${_token}" />
         </form>
         <script>
